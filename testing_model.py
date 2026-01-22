@@ -1,19 +1,26 @@
 import tensorflow as tf
-from tensorflow.keras import models
+import numpy as np
+from tensorflow.keras.preprocessing import image
 
-# 1. Pehle apna model file se load karein
-# Agar aapne model .keras extension se save kiya hai to wo likhein
-my_model = tf.keras.models.load_model('sign_language_model.keras')
+# 1. Model Load
+model = tf.keras.models.load_model('sign_language_model.keras')
 
-# 2. Dataset load karein (Jo aapne pehle hi kiya hua hai)
-test_ds = tf.keras.utils.image_dataset_from_directory(
-    r"Dataset/test_set",
-    image_size=(64, 64),
-    batch_size=32
-)
+# 2. Test Image ka path dein (E.g., Test set se koi 'A' ki image)
+# Path check
+img_path = r"Dataset/test_set/A/1.png"
 
-# 3. AB EVALUATE KAREIN (Yahan galti thi)
-# 'models.evaluate' ki jagah 'my_model.evaluate' likhein
-results = my_model.evaluate(test_ds)
+# 3. Image Preprocessing
+img = image.load_img(img_path, target_size=(64, 64))
+img_array = image.img_to_array(img)
+img_array = np.expand_dims(img_array, axis=0)
+img_array /= 255.0 # Normalization boht zaroori hai
 
-print(f"Test Set Accuracy: {results[1]*100:.2f}%")
+# 4. Prediction
+classes = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+prediction = model.predict(img_array)
+result = classes[np.argmax(prediction)]
+confidence = np.max(prediction) * 100
+
+print(f"\nModel Prediction: {result}")
+print(f"Confidence: {confidence:.2f}%")
+
