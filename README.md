@@ -20,7 +20,7 @@ The project focuses on:
 - NumPy, Matplotlib  
 
 ## Dataset
-
+URL: https://github.com/shadabsk/Sign-Language-Recognition-Using-Hand-Gestures-Keras-PyQT5-OpenCV.git
 - Total images: **45,500**  
 - Number of classes: **26 (A–Z)**  
 - Directory structure is organized by class labels  
