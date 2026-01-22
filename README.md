@@ -66,8 +66,5 @@ When manual scaling was removed, the model again achieved **around 99% accuracy*
 
 This experiment highlighted the importance of maintaining **consistent preprocessing between training and inference**.
 
-## How to Run the Project
+<img width="458" height="167" alt="image" src="https://github.com/user-attachments/assets/e9c03d9d-6e1a-402f-b67c-d2a166c5e33c" />
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
